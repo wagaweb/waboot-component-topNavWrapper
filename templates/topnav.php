@@ -1,5 +1,5 @@
 <div id="topnav__wrapper" class="topnav__wrapper">
-    <div id="topnav__inner" class="topnav__inner <?php echo Waboot\functions\get_option( 'topnav_width','wbcontainer' ); ?> ">
+    <div id="topnav__inner" class="topnav__inner <?php echo $topnav_width ?>">
         <?php
         // Top Nav widgets
         \Waboot\functions\print_widgets_in_area('topnav');
