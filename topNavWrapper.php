@@ -10,7 +10,7 @@ Author URI: http://www.waga.it
  */
 
 if(!class_exists("\\Waboot\\Component")){
-	require_once get_template_directory().'/inc/Component.php';
+    require_once get_template_directory().'/inc/Component.php';
 }
 
 class TopNavWrapperComponent extends \Waboot\Component{
@@ -23,7 +23,7 @@ class TopNavWrapperComponent extends \Waboot\Component{
      */
     public function setup(){
         parent::setup();
-	    Waboot()->add_component_style('topnav_style', $this->directory_uri . '/assets/dist/css/topNavWrapper.css');
+        Waboot()->add_component_style('topnav_style', $this->directory_uri . '/assets/dist/css/topNavWrapper.css');
     }
 
     public function styles(){
@@ -34,7 +34,7 @@ class TopNavWrapperComponent extends \Waboot\Component{
         parent::run();
         $display_zone = $this->get_display_zone();
         $display_priority = $this->get_display_priority();
-	    WabootLayout()->add_zone_action($display_zone,[$this,"display_tpl"],intval($display_priority));
+        WabootLayout()->add_zone_action($display_zone,[$this,"display_tpl"],intval($display_priority));
     }
 
     public function widgets() {
@@ -53,7 +53,7 @@ class TopNavWrapperComponent extends \Waboot\Component{
         $v = new \WBF\components\mvc\HTMLView($this->theme_relative_path."/templates/topnav.php");
 
         $args = [
-            'topnav_width' => of_get_option( 'topnav_width',WabootLayout()->get_grid_class('container') ),
+            "topnav_width" => WabootLayout()->get_container_grid_class(\Waboot\functions\get_option( 'topnav_width') ),
         ];
         $v->clean()->display($args);
 
@@ -74,19 +74,19 @@ class TopNavWrapperComponent extends \Waboot\Component{
             'name' => __('Top Nav Wrapper Width', 'waboot'),
             'desc' => __('Select Top Nav Wrapper width. Fluid or Boxed?', 'waboot'),
             'id' => 'topnav_width',
-            'std' => 'container',
+            'std' => \Waboot\Layout::GRID_CLASS_CONTAINER,
             'type' => 'images',
             'options' => [
-	            'container-fluid' => [
+                \Waboot\Layout::GRID_CLASS_CONTAINER_FLUID => [
                     'label' => 'Fluid',
                     'value' => $imagepath . 'layout/top-nav-fluid.png'
                 ],
-	            'container' => [
+                \Waboot\Layout::GRID_CLASS_CONTAINER => [
                     'label' => 'Boxed',
                     'value' => $imagepath . 'layout/top-nav-boxed.png'
                 ]
             ]
-        ],"layout");
+        ],"header");
 
         $orgzr->add([
             'name' => _x('Top Nav Wrapper Background', 'Theme options', 'waboot'),
