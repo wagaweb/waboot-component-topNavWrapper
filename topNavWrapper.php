@@ -24,12 +24,9 @@ class TopNavWrapperComponent extends \Waboot\Component{
     public function setup(){
         parent::setup();
 	    Waboot()->add_component_style('topnav_style', $this->directory_uri . '/assets/dist/css/topNavWrapper.css');
+	    add_filter('waboot/theme_options_css_file/content',[$this,'inject_theme_options_css_properties']);
     }
-
-    public function styles(){
-        parent::styles();
-    }
-
+    
     public function run(){
         parent::run();
         $display_zone = $this->get_display_zone();
@@ -100,4 +97,16 @@ class TopNavWrapperComponent extends \Waboot\Component{
         $orgzr->reset_group();
         $orgzr->reset_section();
     }
+
+	public function inject_theme_options_css_properties($content){
+		ob_start();
+		?>
+		.topnav__wrapper {
+			background-color: {{ topnav_bgcolor }};
+		}
+		<?php
+		$output = trim(ob_get_clean());
+		$content .= $output;
+		return $content;
+	}
 }
