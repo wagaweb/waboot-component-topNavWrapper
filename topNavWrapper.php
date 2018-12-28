@@ -29,8 +29,12 @@ class TopNavWrapperComponent extends \Waboot\Component{
     
     public function run(){
         parent::run();
+	    $display_zone = $this->get_display_zone();
 	    if(\method_exists($this,'add_zone_action')){
 		    $this->add_zone_action([$this,'display_tpl']);
+	    }elseif($display_zone !== '__none'){
+		    $display_priority = $this->get_display_priority();
+		    WabootLayout()->add_zone_action($display_zone,[$this,'display_tpl'],intval($display_priority));
 	    }
     }
 
