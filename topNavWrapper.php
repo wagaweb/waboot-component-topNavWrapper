@@ -4,7 +4,7 @@ Component Name: Top Nav Wrapper
 Description: Top Nav Wrapper Component
 Category: Layout
 Tags: Navigation
-Version: 1.1.0
+Version: 1.1.1
 Author: Waboot Team <info@waboot.io>
 Author URI: http://www.waboot.io
  */
