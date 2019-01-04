@@ -87,15 +87,6 @@ class TopNavWrapperComponent extends \Waboot\Component{
             ]
         ],"header");
 
-        $orgzr->add([
-            'name' => _x('Top Nav Wrapper Background', 'Theme options', 'waboot'),
-            'desc' => _x('Change the Top Nav Wrapper background color.', 'Theme options', 'waboot'),
-            'id' => 'topnav_bgcolor',
-            'type' => 'color',
-            'std' => '',
-            'save_action' => "\\Waboot\\functions\\deploy_theme_options_css"
-        ],"header");
-
         $orgzr->reset_group();
         $orgzr->reset_section();
     }
